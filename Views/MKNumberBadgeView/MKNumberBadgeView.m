@@ -144,9 +144,12 @@
 	CGContextSetStrokeColorWithColor(  curContext, self.strokeColor.CGColor  );
 	CGContextSetFillColorWithColor( curContext, self.fillColor.CGColor );
 	
-	// Line stroke straddles the path, so we need to account for the outer portion
-	badgeRect.size.width += ceilf( self.strokeWidth / 2 );
-	badgeRect.size.height += ceilf( self.strokeWidth / 2 );
+	//dont need to consider stroke when align center
+	if (self.alignment != NSTextAlignmentCenter) {
+            // Line stroke straddles the path, so we need to account for the outer portion
+       	    badgeRect.size.width += ceilf( self.strokeWidth / 2 );
+	    badgeRect.size.height += ceilf( self.strokeWidth / 2 );
+	}
 	
 	CGPoint ctm;
 	
